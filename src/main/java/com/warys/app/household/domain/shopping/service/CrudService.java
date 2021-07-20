@@ -9,4 +9,6 @@ public interface CrudService<T> {
     T find(String id);
 
     T update(String id, Command<T> command);
+
+    void delete(String id);
 }

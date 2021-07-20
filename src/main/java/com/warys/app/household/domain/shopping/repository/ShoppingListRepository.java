@@ -9,4 +9,6 @@ public interface ShoppingListRepository extends SearchByPredicate<ShoppingList> 
     ShoppingList find(String id);
 
     ShoppingList update(String id, ShoppingList toDomain);
+
+    void delete(String id);
 }

@@ -22,4 +22,9 @@ public record ShoppingService(ShoppingListRepository repository) implements Crud
         ShoppingList newRecord = command.toDomain();
         return repository.update(id, newRecord);
     }
+
+    @Override
+    public void delete(String id) {
+        repository.delete(id);
+    }
 }

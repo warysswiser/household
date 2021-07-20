@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-import static com.warys.app.household.application.common.AppResponse.created;
-import static com.warys.app.household.application.common.AppResponse.ok;
+import static com.warys.app.household.application.common.AppResponse.*;
 
 @RestController
 @RequestMapping("/shopping")
@@ -49,6 +48,12 @@ public class ShoppingController {
             @PathVariable @NotBlank final String shoppingListId,
             @RequestBody @Valid final UpdateListCommand request) {
         return ok(shoppingListService.update(shoppingListId, request));
+    }
+
+    @DeleteMapping(path = "/list/{shoppingListId}")
+    AppResponse<?> deleteShoppingList(@PathVariable @NotBlank final String shoppingListId) {
+        shoppingListService.delete(shoppingListId);
+        return deleted();
     }
 
 }

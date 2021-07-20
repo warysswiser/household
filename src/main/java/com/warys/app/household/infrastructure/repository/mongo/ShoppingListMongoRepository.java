@@ -38,6 +38,11 @@ public class ShoppingListMongoRepository implements ShoppingListRepository {
         return repository.save(entity).toDomain();
     }
 
+    @Override
+    public void delete(String id) {
+        repository.deleteById(id);
+    }
+
     public List<ShoppingList> list() {
         return repository.findAll().stream().map(ShoppingListEntity::toDomain).collect(Collectors.toList());
     }
