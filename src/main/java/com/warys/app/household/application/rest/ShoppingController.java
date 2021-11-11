@@ -8,6 +8,7 @@ import com.warys.app.household.application.rest.exception.DataNotFoundException;
 import com.warys.app.household.application.rest.exception.InvalidDataException;
 import com.warys.app.household.domain.ShoppingList;
 import com.warys.app.household.domain.shopping.service.CrudService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,13 +18,10 @@ import static com.warys.app.household.application.common.AppResponse.*;
 
 @RestController
 @RequestMapping("/shopping")
+@AllArgsConstructor
 public class ShoppingController {
 
     private final CrudService<ShoppingList> shoppingListService;
-
-    public ShoppingController(CrudService<ShoppingList> shoppingListService) {
-        this.shoppingListService = shoppingListService;
-    }
 
     @PostMapping(path = "/list")
     AppResponse<CreateListResponse> createShoppingList(@RequestBody @Valid final CreateListCommand request) {

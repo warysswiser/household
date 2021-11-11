@@ -1,4 +1,4 @@
-package com.warys.app.household.application.rest.handler;
+package com.warys.app.household.application.response;
 
 import com.warys.app.household.application.common.JacksonRecordMixin;
 

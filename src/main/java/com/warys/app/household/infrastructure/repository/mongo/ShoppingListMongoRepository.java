@@ -3,6 +3,7 @@ package com.warys.app.household.infrastructure.repository.mongo;
 import com.warys.app.household.domain.ShoppingList;
 import com.warys.app.household.domain.shopping.repository.ShoppingListRepository;
 import com.warys.app.household.infrastructure.repository.mongo.entity.ShoppingListEntity;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,13 +11,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Repository
+@AllArgsConstructor
 public class ShoppingListMongoRepository implements ShoppingListRepository {
 
     private final SpringDataShoppingListMongoRepository repository;
-
-    public ShoppingListMongoRepository(SpringDataShoppingListMongoRepository repository) {
-        this.repository = repository;
-    }
 
     public ShoppingList create(ShoppingList record) {
         Objects.requireNonNull(record, "shopping list given for creation must not be null");
