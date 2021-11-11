@@ -1,6 +1,6 @@
 # household-api
 
-[![Build Status](https://github.com/warysswiser/household/actions/workflows/maven.yml/badge.svg)](https://github.com/warysswiser/household/actions/workflows/maven.yml)
+[![Build Status](https://travis-ci.org/warysswiser/household.svg?branch=master)](https://travis-ci.org/warysswiser/household)
 [![Coverage Status](https://coveralls.io/repos/github/warysswiser/household/badge.svg)](https://coveralls.io/github/warysswiser/household)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/waryss/scrooge-api.svg)](https://github.com/warysswiser/household/pulse)
