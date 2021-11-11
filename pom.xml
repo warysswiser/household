@@ -28,7 +28,7 @@
         <springframework.version>5.2.5.RELEASE</springframework.version>
         <!-- Tools -->
         <lombok.version>1.18.22</lombok.version>
-        <springfox.version>2.9.2</springfox.version>
+        <springfox.version>3.0.0</springfox.version>
     </properties>
 
     <dependencies>
