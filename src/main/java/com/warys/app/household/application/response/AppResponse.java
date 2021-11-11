@@ -1,4 +1,4 @@
-package com.warys.app.household.application.common;
+package com.warys.app.household.application.response;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

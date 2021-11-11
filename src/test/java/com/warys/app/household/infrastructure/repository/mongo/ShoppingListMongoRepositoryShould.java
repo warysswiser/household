@@ -16,8 +16,9 @@ import java.util.function.Predicate;
 
 import static com.warys.app.household.ShoppingFixture.*;
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ShoppingListMongoRepositoryShould {
@@ -97,6 +98,13 @@ class ShoppingListMongoRepositoryShould {
         assertThat(actual.name()).isEqualTo("list_name_" + DEFAULT_INDEX);
         assertThat(actual.owner()).isNotNull();
         assertThat(actual.sharedWith()).isNotEmpty();
+    }
+
+    @Test
+    void tested_shopping_list() {
+        tested.delete(DEFAULT_INDEX);
+
+        verify(repository).deleteById(DEFAULT_INDEX);
     }
 
     @Test

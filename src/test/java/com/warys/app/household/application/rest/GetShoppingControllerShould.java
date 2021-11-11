@@ -26,8 +26,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -53,8 +52,8 @@ class GetShoppingControllerShould extends AbstractControllerShould {
         String urlTemplate = "/shopping/list/" + SHOPPING_LIST_ID;
 
         this.mockMvc.perform(
-                get(urlTemplate)
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                        get(urlTemplate)
+                                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("list_name_" + SHOPPING_LIST_ID)))
                 .andExpect(jsonPath("$.owner", notNullValue()))
@@ -67,8 +66,8 @@ class GetShoppingControllerShould extends AbstractControllerShould {
         String urlTemplate = "/shopping/list/" + DEFAULT_INDEX;
 
         this.mockMvc.perform(
-                get(urlTemplate)
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                        get(urlTemplate)
+                                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print()).andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.timestamp", notNullValue()))
                 .andExpect(jsonPath("$.message", is("sorry, this shopping list is unknown")))
@@ -76,25 +75,34 @@ class GetShoppingControllerShould extends AbstractControllerShould {
                 .andExpect(jsonPath("$.exception", is("DataNotFoundException")));
     }
 
-
     @Test
     void update_shopping_list() throws Exception {
         String urlTemplate = "/shopping/list/" + SHOPPING_LIST_ID;
 
         final CreateListCommand request = new CreateListCommand(
                 LIST_NAME,
-                new User(USER_ID,null, null, null),
+                new User(USER_ID, null, null, null),
                 List.of(
-                        new Item( "bread", ItemState.UNKNOWN),
-                        new Item( "bread", ItemState.UNKNOWN)
+                        new Item("bread", ItemState.UNKNOWN),
+                        new Item("bread", ItemState.UNKNOWN)
                 ),
                 null
         );
         String content = om.writeValueAsString(request);
         this.mockMvc.perform(
-                put(urlTemplate)
-                        .content(content)
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                        put(urlTemplate)
+                                .content(content)
+                                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
                 .andDo(print()).andExpect(status().isOk());
+    }
+
+    @Test
+    void delete_shopping_list() throws Exception {
+        String urlTemplate = "/shopping/list/" + SHOPPING_LIST_ID;
+
+        this.mockMvc.perform(
+                        delete(urlTemplate)
+                                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print()).andExpect(status().isNoContent());
     }
 }

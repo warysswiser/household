@@ -15,6 +15,7 @@ import static com.warys.app.household.ShoppingFixture.aShoppingList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -63,5 +64,12 @@ class ShoppingServiceShould {
 
         assertThat(actual).isNotNull();
         assertThat(actual.id()).isNotBlank().isEqualTo(DEFAULT_INDEX);
+    }
+
+    @Test
+    void delete_shopping_list_when_valid_id_is_given() {
+        tested.delete(DEFAULT_INDEX);
+
+        verify(repository).delete(DEFAULT_INDEX);
     }
 }

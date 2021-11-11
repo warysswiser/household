@@ -1,6 +1,6 @@
 package com.warys.app.household.application.rest.handler;
 
-import com.warys.app.household.application.common.AppResponse;
+import com.warys.app.household.application.response.AppResponse;
 import com.warys.app.household.application.response.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.warys.app.household.application.rest;
 
-import com.warys.app.household.application.common.AppResponse;
+import com.warys.app.household.application.response.AppResponse;
 import com.warys.app.household.application.request.shopping.CreateListCommand;
 import com.warys.app.household.application.request.shopping.UpdateListCommand;
 import com.warys.app.household.application.response.shopping.CreateListResponse;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-import static com.warys.app.household.application.common.AppResponse.*;
+import static com.warys.app.household.application.response.AppResponse.*;
 
 @RestController
 @RequestMapping("/shopping")
