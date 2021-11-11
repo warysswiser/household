@@ -1,7 +1,7 @@
 # household-api
 
-[![Build Status](https://travis-ci.org/warysswiser/household.svg?branch=master)](https://travis-ci.org/warysswiser/household)
-[![Coverage Status](https://coveralls.io/repos/github/warysswiser/household/badge.svg)](https://coveralls.io/github/warysswiser/household)
+[![Build Status](https://app.travis-ci.com/warysswiser/household.svg?branch=main)](https://app.travis-ci.com/github/warysswiser/household)
+[![Coverage Status](https://coveralls.io/repos/github/warysswiser/household/badge.svg?branch=main)](https://coveralls.io/github/warysswiser/household?branch=main)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/waryss/scrooge-api.svg)](https://github.com/warysswiser/household/pulse)
 
