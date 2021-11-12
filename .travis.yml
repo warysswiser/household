@@ -10,9 +10,6 @@ addons:
 
 jobs:
   include:
-    - stage: build
-      script:
-        - mvn clean install -DskipTests
-    - stage: verify
+    - stage: build and test
       script:
         - mvn verify jacoco:report coveralls:report
