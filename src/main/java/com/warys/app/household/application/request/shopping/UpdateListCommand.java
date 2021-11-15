@@ -1,6 +1,5 @@
 package com.warys.app.household.application.request.shopping;
 
-import com.warys.app.household.application.common.JacksonRecord;
 import com.warys.app.household.domain.Command;
 import com.warys.app.household.domain.ShoppingList;
 import com.warys.app.household.domain.shopping.Item;
@@ -13,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
-@JacksonRecord
 public record UpdateListCommand(
         @NotBlank(message = "shopping list name is mandatory") String name,
         @NotNull(message = "shopping list owner is mandatory") User owner,

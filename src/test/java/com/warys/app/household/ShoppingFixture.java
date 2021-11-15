@@ -13,12 +13,20 @@ public final class ShoppingFixture extends DefaultFixture {
 
     private static final String LIST_NAME = "list_name_";
 
-    public static List<ShoppingListEntity> aShoppingLists(int count) {
+    public static List<ShoppingListEntity> aShoppingListEntities(int count) {
         return lists(count, ShoppingFixture::aShoppingListEntity);
     }
 
+    public static List<ShoppingList> aShoppingLists(int count) {
+        return lists(count, ShoppingFixture::aShoppingList);
+    }
+
     public static ShoppingList aShoppingList() {
-        return new ShoppingList(DEFAULT_INDEX, LIST_NAME + DEFAULT_INDEX, aUser(DEFAULT_INDEX), anItemList(2), aUserList(2));
+        return aShoppingList(DEFAULT_INDEX);
+    }
+
+    public static ShoppingList aShoppingList(String index) {
+        return new ShoppingList(index, LIST_NAME + index, aUser(index), anItemList(2), aUserList(2));
     }
 
     public static ShoppingListEntity aShoppingListEntity() {

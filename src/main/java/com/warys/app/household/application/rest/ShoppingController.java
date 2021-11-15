@@ -1,6 +1,6 @@
 package com.warys.app.household.application.rest;
 
-import com.warys.app.household.application.response.AppResponse;
+import com.warys.app.household.application.response.ApiResponse;
 import com.warys.app.household.application.request.shopping.CreateListCommand;
 import com.warys.app.household.application.request.shopping.UpdateListCommand;
 import com.warys.app.household.application.response.shopping.CreateListResponse;
@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
-import static com.warys.app.household.application.response.AppResponse.*;
+import java.util.List;
+
+import static com.warys.app.household.application.response.ApiResponse.*;
 
 @RestController
 @RequestMapping("/shopping")
@@ -24,7 +26,7 @@ public class ShoppingController {
     private final CrudService<ShoppingList> shoppingListService;
 
     @PostMapping(path = "/list")
-    AppResponse<CreateListResponse> createShoppingList(@RequestBody @Valid final CreateListCommand request) {
+    ApiResponse<CreateListResponse> createShoppingList(@RequestBody @Valid final CreateListCommand request) {
         if (request.owner().id() == null) {
             throw new InvalidDataException("sorry, but you must provide a valid user");
         }
@@ -32,8 +34,14 @@ public class ShoppingController {
         return created(new CreateListResponse(response));
     }
 
+
+    @GetMapping(path = "/list")
+    ApiResponse<List<ShoppingList>> getAllShoppingList() {
+        return ok(shoppingListService.getAll());
+    }
+
     @GetMapping(path = "/list/{shoppingListId}")
-    AppResponse<ShoppingList> findShoppingList(@PathVariable @NotBlank final String shoppingListId) {
+    ApiResponse<ShoppingList> findShoppingList(@PathVariable @NotBlank final String shoppingListId) {
         try {
             return ok(shoppingListService.find(shoppingListId));
         } catch (IllegalArgumentException ex) {
@@ -42,14 +50,14 @@ public class ShoppingController {
     }
 
     @PutMapping(path = "/list/{shoppingListId}")
-    AppResponse<ShoppingList> updateShoppingList(
+    ApiResponse<ShoppingList> updateShoppingList(
             @PathVariable @NotBlank final String shoppingListId,
             @RequestBody @Valid final UpdateListCommand request) {
         return ok(shoppingListService.update(shoppingListId, request));
     }
 
     @DeleteMapping(path = "/list/{shoppingListId}")
-    AppResponse<?> deleteShoppingList(@PathVariable @NotBlank final String shoppingListId) {
+    ApiResponse<?> deleteShoppingList(@PathVariable @NotBlank final String shoppingListId) {
         shoppingListService.delete(shoppingListId);
         return deleted();
     }

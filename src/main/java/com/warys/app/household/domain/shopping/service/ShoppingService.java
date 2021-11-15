@@ -4,6 +4,8 @@ import com.warys.app.household.domain.Command;
 import com.warys.app.household.domain.ShoppingList;
 import com.warys.app.household.domain.shopping.repository.ShoppingListRepository;
 
+import java.util.List;
+
 public record ShoppingService(ShoppingListRepository repository) implements CrudService<ShoppingList> {
 
     @Override
@@ -15,6 +17,11 @@ public record ShoppingService(ShoppingListRepository repository) implements Crud
     @Override
     public ShoppingList find(String id) {
         return repository.find(id);
+    }
+
+    @Override
+    public List<ShoppingList> getAll() {
+        return repository.getAll();
     }
 
     @Override

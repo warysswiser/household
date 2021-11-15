@@ -1,6 +1,6 @@
 package com.warys.app.household.application.rest.handler;
 
-import com.warys.app.household.application.response.AppResponse;
+import com.warys.app.household.application.response.ApiResponse;
 import com.warys.app.household.application.response.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -48,12 +48,12 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public final AppResponse<Object> handleAppException(Exception ex, WebRequest request) {
+    public final ApiResponse<Object> handleAppException(Exception ex, WebRequest request) {
         var errorResponse = new ErrorResponse(
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false), ex.getClass().getSimpleName());
-        return new AppResponse<>(errorResponse, resolveResponseStatus(ex));
+        return new ApiResponse<>(errorResponse, resolveResponseStatus(ex));
     }
 
     private HttpStatus resolveResponseStatus(Exception exception) {

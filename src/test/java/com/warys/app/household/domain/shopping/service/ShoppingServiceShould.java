@@ -9,9 +9,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 import static com.warys.app.household.DefaultFixture.DEFAULT_INDEX;
-import static com.warys.app.household.ShoppingFixture.aNotSavedShoppingList;
-import static com.warys.app.household.ShoppingFixture.aShoppingList;
+import static com.warys.app.household.ShoppingFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -53,6 +54,16 @@ class ShoppingServiceShould {
         assertThat(actual).isNotNull();
         assertThat(actual.id()).isEqualTo(id);
         assertThat(actual.name()).isEqualTo("list_name_" + id);
+    }
+
+    @Test
+    void get_all_shopping_list() {
+        String id = DEFAULT_INDEX;
+        when(repository.getAll()).thenReturn(aShoppingLists(5));
+
+        List<ShoppingList> actual = tested.getAll();
+
+        assertThat(actual).hasSize(5);
     }
 
     @Test

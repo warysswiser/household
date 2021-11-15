@@ -26,6 +26,11 @@ public class ShoppingListMongoRepository implements ShoppingListRepository {
     }
 
     @Override
+    public List<ShoppingList> getAll() {
+        return list();
+    }
+
+    @Override
     public ShoppingList update(String id, ShoppingList record) {
         ShoppingListEntity entity = findEntity(id);
         Objects.requireNonNull(record, "shopping list given for update must not be null");

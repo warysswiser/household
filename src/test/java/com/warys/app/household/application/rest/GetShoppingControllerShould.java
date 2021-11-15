@@ -16,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,6 +46,7 @@ class GetShoppingControllerShould extends AbstractControllerShould {
     void before() {
         when(repository.findById(SHOPPING_LIST_ID)).thenReturn(Optional.of(A_SHOPPING_LIST_ENTITY));
         when(repository.save(any(ShoppingListEntity.class))).thenAnswer(i -> i.getArgument(0));
+        when(repository.findAll()).thenReturn(List.of(A_SHOPPING_LIST_ENTITY));
     }
 
     @Test
@@ -59,6 +61,20 @@ class GetShoppingControllerShould extends AbstractControllerShould {
                 .andExpect(jsonPath("$.owner", notNullValue()))
                 .andExpect(jsonPath("$.items", notNullValue()))
                 .andExpect(jsonPath("$.sharedWith", notNullValue()));
+    }
+
+    @Test
+    void get_all_shopping_list() throws Exception {
+        String urlTemplate = "/shopping/list";
+
+        this.mockMvc.perform(
+                        get(urlTemplate)
+                                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
+                .andDo(print()).andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name", is("list_name_" + SHOPPING_LIST_ID)))
+                .andExpect(jsonPath("$[0].owner", notNullValue()))
+                .andExpect(jsonPath("$[0].items", notNullValue()))
+                .andExpect(jsonPath("$[0].sharedWith", notNullValue()));
     }
 
     @Test

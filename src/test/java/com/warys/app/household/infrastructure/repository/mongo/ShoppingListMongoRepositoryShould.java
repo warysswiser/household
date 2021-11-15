@@ -51,7 +51,7 @@ class ShoppingListMongoRepositoryShould {
 
     @Test
     void retrieve_all_shopping_list() {
-        when(repository.findAll()).thenReturn(aShoppingLists(10));
+        when(repository.findAll()).thenReturn(aShoppingListEntities(10));
         List<ShoppingList> actual = tested.list();
 
         assertThat(actual)
@@ -64,7 +64,7 @@ class ShoppingListMongoRepositoryShould {
 
     @Test
     void find_shopping_list_by_criteria() {
-        when(repository.findAll()).thenReturn(aShoppingLists(10));
+        when(repository.findAll()).thenReturn(aShoppingListEntities(10));
         Predicate<ShoppingList> predicate = s -> s.name().equals("list_name_6");
         Set<ShoppingList> actual = tested.search(predicate);
 
@@ -87,6 +87,14 @@ class ShoppingListMongoRepositoryShould {
     }
 
     @Test
+    void get_all_shopping() {
+        when(repository.findAll()).thenReturn(aShoppingListEntities(5));
+        List<ShoppingList> actual = tested.getAll();
+
+        assertThat(actual).hasSize(5);
+    }
+
+    @Test
     void update_shopping_list() {
         ShoppingListEntity entity = aShoppingListEntity();
         when(repository.save(any(ShoppingListEntity.class))).thenReturn(entity);
@@ -101,7 +109,7 @@ class ShoppingListMongoRepositoryShould {
     }
 
     @Test
-    void tested_shopping_list() {
+    void delete_shopping_list() {
         tested.delete(DEFAULT_INDEX);
 
         verify(repository).deleteById(DEFAULT_INDEX);
