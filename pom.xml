@@ -31,7 +31,7 @@
         <!-- Tools -->
         <lombok.version>1.18.22</lombok.version>
         <springfox.version>3.0.0</springfox.version>
-        <jacoco.version>0.8.7</jacoco.version>
+        <jacoco.version>0.8.8</jacoco.version>
         <coveralls.version>4.3.0</coveralls.version>
     </properties>
 
