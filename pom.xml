@@ -25,7 +25,7 @@
         <project.build.sourceEncoding>${source.encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${source.encoding}</project.reporting.outputEncoding>
         <!-- Spring -->
-        <springframework.version>5.3.13</springframework.version>
+        <springframework.version>5.3.23</springframework.version>
         <!-- Jaxb -->
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <!-- Tools -->
