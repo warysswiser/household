@@ -29,7 +29,7 @@
         <!-- Jaxb -->
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <!-- Tools -->
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.26</lombok.version>
         <springfox.version>3.0.0</springfox.version>
         <jacoco.version>0.8.7</jacoco.version>
         <coveralls.version>4.3.0</coveralls.version>
